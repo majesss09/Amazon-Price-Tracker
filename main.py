@@ -6,9 +6,9 @@ import os
 dotenv.load_dotenv()
 
 TARGET_PRICE = 300
+LINK = "https://www.amazon.com/dp/B075CYMYK6?ref_=cm_sw_r_cp_ud_ct_FM9M699VKHTT47YD50Q6&th=1"
 
-
-response = requests.get("https://www.amazon.com/dp/B075CYMYK6?ref_=cm_sw_r_cp_ud_ct_FM9M699VKHTT47YD50Q6&th=1")
+response = requests.get(LINK)
 webpage = response.text
 soup = BeautifulSoup(webpage, "lxml")
 
@@ -26,7 +26,7 @@ if price < TARGET_PRICE:
         connection.login(user=MY_EMAIL, password=MY_PASSWORD)
         connection.sendmail(from_addr=MY_EMAIL, 
                             to_addrs=MY_EMAIL, 
-                            msg=f"Subject:Amazon Price Alert!\n\nInstant Pot is now ${price}!\nhttps://www.amazon.com/dp/B075CYMYK6?ref_=cm_sw_r_cp_ud_ct_FM9M699VKHTT47YD50Q6&th=1")
+                            msg=f"Subject:Amazon Price Alert!\n\nInstant Pot is now ${price}!\n{LINK}")
 
 
 
